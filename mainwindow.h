@@ -45,9 +45,7 @@ public:
     void Video_init();
     void calc_Histo(const Mat&, Mat&, int, int);
     void draw_histo(Mat, Mat&, Size);
-
     void Rec_func();
-
     void Cap_func();
 
 protected:
@@ -69,9 +67,9 @@ private slots:
     void on_startBtn_CAP_pressed();
     void on_pushButton_BR_PLUS_pressed();
     void on_pushButton_BR_MINUS_pressed();
-    void on_BlurSlider_valueChanged(int value);
-    void on_EdgeSlider_1_valueChanged(int value);
-    void on_EdgeSlider_2_valueChanged(int value);
+    void on_BlurSlider_valueChanged(int);
+    void on_EdgeSlider_1_valueChanged(int);
+    void on_EdgeSlider_2_valueChanged(int);
 
 private:
     Ui::MainWindow *ui;
