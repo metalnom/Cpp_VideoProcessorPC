@@ -111,3 +111,26 @@ void MainWindow::on_startBtn_CAP_pressed() {
     waitKey(0);
     destroyWindow("captured image");
 }
+
+void MainWindow::on_pushButton_BR_PLUS_pressed() {
+    brightness += 15;
+    if(brightness >= 255) brightness = 255;
+}
+
+void MainWindow::on_pushButton_BR_MINUS_pressed() {
+    brightness -= 15;
+    if(brightness <= -255) brightness = -255;
+}
+
+void MainWindow::on_BlurSlider_valueChanged(int value) {
+    blur_val = value;
+    if(blur_val%2 == 0) blur_val += 1;
+}
+
+void MainWindow::on_EdgeSlider_1_valueChanged(int value) {
+    edge_th1 = value;
+}
+
+void MainWindow::on_EdgeSlider_2_valueChanged(int value) {
+    edge_th2 = value;
+}

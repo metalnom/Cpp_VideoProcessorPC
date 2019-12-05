@@ -5,11 +5,6 @@
 using namespace cv;
 using namespace std;
 
-int brightness = 0;
-int blur_val = 55;
-int edge_th1 = 100;
-int edge_th2 = 150;
-
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
@@ -99,7 +94,7 @@ void MainWindow::on_startBtn_MAIN_pressed() {
         frame_rg = bgr[2]/2 + bgr[1]/2;     frame_gb = bgr[1]/2 + bgr[0]/2;     frame_br = bgr[0]/2 + bgr[2]/2;
 
         Mat r_hist, g_hist, b_hist;
-        Mat frame_r_hist, frame_g_hist, frame_b_hist, frame_gauss, frame_canny, frame_mov, frame_sen;
+        Mat frame_r_hist, frame_g_hist, frame_b_hist, frame_gauss, frame_canny, frame_mov, frame_bright;
 
         Size size = Size(256, 200);
         calc_Histo(bgr[2], r_hist, 256, 256);   draw_histo(r_hist, frame_r_hist, size);
@@ -248,8 +243,8 @@ void MainWindow::on_startBtn_MAIN_pressed() {
 
             ui->graphicsView_org->fitInView(&pixmap01, Qt::KeepAspectRatio);
             ui->graphicsView_ROT->fitInView(&pixmap02, Qt::KeepAspectRatio);
-            frame_org.convertTo(frame_sen, -1, 1, brightness);
-            QImage qimg19(frame_sen.data, frame_sen.cols, frame_sen.rows, frame_sen.step, QImage::Format_RGB888);
+            frame_org.convertTo(frame_bright, -1, 1, brightness);
+            QImage qimg19(frame_bright.data, frame_bright.cols, frame_bright.rows, frame_bright.step, QImage::Format_RGB888);
             pixmap19.setPixmap( QPixmap::fromImage(qimg19.rgbSwapped()));
             ui->graphicsView_Bright->fitInView(&pixmap19, Qt::KeepAspectRatio);
             ui->BR_Number->display(brightness);
@@ -269,27 +264,4 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     else {
         event->accept();
     }
-}
-
-void MainWindow::on_pushButton_BR_PLUS_pressed() {
-    brightness += 15;
-    if(brightness >= 255) brightness = 255;
-}
-
-void MainWindow::on_pushButton_BR_MINUS_pressed() {
-    brightness -= 15;
-    if(brightness <= -255) brightness = -255;
-}
-
-void MainWindow::on_BlurSlider_valueChanged(int value) {
-    blur_val = value;
-    if(blur_val%2 == 0) blur_val += 1;
-}
-
-void MainWindow::on_EdgeSlider_1_valueChanged(int value) {
-    edge_th1 = value;
-}
-
-void MainWindow::on_EdgeSlider_2_valueChanged(int value) {
-    edge_th2 = value;
 }

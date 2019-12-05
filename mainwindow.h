@@ -24,6 +24,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     int rot;
+    int brightness = 0;
+    int blur_val = 55;
+    int edge_th1 = 100;
+    int edge_th2 = 150;
     ~MainWindow();
 
 protected:
