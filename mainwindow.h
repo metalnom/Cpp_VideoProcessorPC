@@ -28,7 +28,23 @@ public:
     int blur_val = 55;
     int edge_th1 = 100;
     int edge_th2 = 150;
+    Mat frame_org, frame_gray, frame_rg, frame_gb, frame_br, frame_det;
+    Mat bgr[3];
+    Mat r_hist, g_hist, b_hist;
+    Mat frame_r_hist, frame_g_hist, frame_b_hist, frame_gauss, frame_canny, frame_mov, frame_bright;
+
     ~MainWindow();
+
+    void RGB_show();
+    void Histo_show();
+    void Blur_Edge_show();
+    void Move_show();
+    void Detect_show();
+    void Brightness_show();
+    void Show_init();
+    void Video_init();
+    void calc_Histo(const Mat&, Mat&, int, int);
+    void draw_histo(Mat, Mat&, Size);
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -62,9 +78,5 @@ private:
                         pixmap16, pixmap17, pixmap18, pixmap19;
     cv::VideoCapture video;
 };
-
-void calc_Histo(const Mat&, Mat&, int, int);
-void draw_histo(Mat, Mat&, Size);
-
 
 #endif // MAINWINDOW_H
