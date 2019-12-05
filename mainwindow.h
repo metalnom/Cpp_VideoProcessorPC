@@ -43,8 +43,8 @@ private slots:
     void on_pushButton_MOV_zout_clicked();
     void on_startBtn_REC_pressed();
     void on_startBtn_CAP_pressed();
-    void on_pushButton_SEN_PLUS_pressed();
-    void on_pushButton_SEN_MINUS_pressed();
+    void on_pushButton_BR_PLUS_pressed();
+    void on_pushButton_BR_MINUS_pressed();
 
 private:
     Ui::MainWindow *ui;
