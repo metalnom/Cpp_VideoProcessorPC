@@ -56,7 +56,6 @@ void MainWindow::on_startBtn_MAIN_pressed() {
     ui->startBtn_MAIN->setText("Start");
 }
 
-
 void MainWindow::closeEvent(QCloseEvent *event) {
     if(video.isOpened()) {
         QMessageBox::warning(this, "Warning", "Stop the video before closing the application!");

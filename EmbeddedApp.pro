@@ -8,9 +8,18 @@ TEMPLATE = app
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
+        blur_edge_show.cpp \
+        brightness_show.cpp \
         btn_func.cpp \
+        detect_show.cpp \
+        histo_show.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        move_show.cpp \
+        rec_cap_func.cpp \
+        rgb_show.cpp \
+        show_init.cpp \
+        video_init.cpp
 
 HEADERS += \
         mainwindow.h

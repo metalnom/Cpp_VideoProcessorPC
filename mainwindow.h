@@ -46,6 +46,10 @@ public:
     void calc_Histo(const Mat&, Mat&, int, int);
     void draw_histo(Mat, Mat&, Size);
 
+    void Rec_func();
+
+    void Cap_func();
+
 protected:
     void closeEvent(QCloseEvent *event);
 
