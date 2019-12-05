@@ -6,6 +6,9 @@ using namespace cv;
 using namespace std;
 
 int brightness = 0;
+int blur_val = 55;
+int edge_th1 = 100;
+int edge_th2 = 150;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -103,8 +106,9 @@ void MainWindow::on_startBtn_MAIN_pressed() {
         calc_Histo(bgr[1], g_hist, 256, 256);   draw_histo(g_hist, frame_g_hist, size);
         calc_Histo(bgr[0], b_hist, 256, 256);   draw_histo(b_hist, frame_b_hist, size);
 
-        GaussianBlur(frame_org, frame_gauss, Size(55, 55), 0);
-        Canny(frame_org, frame_canny, 100, 150);
+        GaussianBlur(frame_org, frame_gauss, Size(blur_val, blur_val), 0);
+        Canny(frame_org, frame_canny, edge_th1, edge_th2);
+
         frame_mov = frame_org;
 
         if(ui->tabWidget->currentIndex() == 0) {
@@ -219,7 +223,8 @@ void MainWindow::on_startBtn_MAIN_pressed() {
                 }
                 QImage qimg18(frame_det.data, frame_det.cols, frame_det.rows, frame_det.step, QImage::Format_RGB888);
                 pixmap18.setPixmap( QPixmap::fromImage(qimg18.rgbSwapped()));
-            }
+            }ui->BlurSlider->setValue(blur_val);
+            if(blur_val%2 == 0) blur_val += 1;
 
             if(ui->radioButton_face->isChecked()) {
                 classifier.load("haarcascade_frontalface_default.xml");
@@ -274,4 +279,17 @@ void MainWindow::on_pushButton_BR_PLUS_pressed() {
 void MainWindow::on_pushButton_BR_MINUS_pressed() {
     brightness -= 15;
     if(brightness <= -255) brightness = -255;
+}
+
+void MainWindow::on_BlurSlider_valueChanged(int value) {
+    blur_val = value;
+    if(blur_val%2 == 0) blur_val += 1;
+}
+
+void MainWindow::on_EdgeSlider_1_valueChanged(int value) {
+    edge_th1 = value;
+}
+
+void MainWindow::on_EdgeSlider_2_valueChanged(int value) {
+    edge_th2 = value;
 }

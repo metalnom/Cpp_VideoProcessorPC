@@ -45,6 +45,9 @@ private slots:
     void on_startBtn_CAP_pressed();
     void on_pushButton_BR_PLUS_pressed();
     void on_pushButton_BR_MINUS_pressed();
+    void on_BlurSlider_valueChanged(int value);
+    void on_EdgeSlider_1_valueChanged(int value);
+    void on_EdgeSlider_2_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
